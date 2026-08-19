@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { Search, Bell, LogOut, LayoutGrid, Building2, Plus } from 'lucide-react';
 import api from '../api';
 
+const API_BASE_URL = 'http://127.0.0.1:8000';
+
 function HotelList() {
   const [hotels, setHotels] = useState([]);
   const [error, setError] = useState('');
@@ -26,6 +28,11 @@ function HotelList() {
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
     window.location.href = '/';
+  };
+
+  const getImageUrl = (photo) => {
+    if (!photo) return null;
+    return photo.startsWith('http') ? photo : `${API_BASE_URL}${photo}`;
   };
 
   return (
@@ -97,9 +104,15 @@ function HotelList() {
           <div className="grid grid-cols-4 gap-6 mt-6">
             {hotels.map((hotel) => (
               <div key={hotel.id} className="bg-white rounded-lg shadow overflow-hidden">
-                <div className="w-full h-32 bg-gray-200">
-                  {hotel.photo && (
-                    <img src={hotel.photo} alt={hotel.nom} className="w-full h-full object-cover" />
+                <div className="w-full h-32 bg-gray-200 flex items-center justify-center">
+                  {hotel.photo ? (
+                    <img
+                      src={getImageUrl(hotel.photo)}
+                      alt={hotel.nom}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <span className="text-gray-400 text-sm">Pas d'image</span>
                   )}
                 </div>
                 <div className="p-4">

@@ -85,8 +85,6 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/6.1/ref/settings/#databases
-# En local : utilise l'URL par défaut ci-dessous (ta base PostgreSQL locale)
-# Sur Render : utilise automatiquement la variable d'environnement DATABASE_URL
 
 DATABASES = {
     'default': dj_database_url.config(
@@ -139,21 +137,16 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 # Media files (uploaded images)
-# Stockées sur Cloudinary pour éviter la perte de fichiers due au système
-# de fichiers éphémère de Render (les fichiers uploadés localement dans
-# media/ ne survivent pas à un redémarrage/redéploiement du service).
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME'),
-    'API_KEY': config('CLOUDINARY_API_KEY'),
-    'API_SECRET': config('CLOUDINARY_API_SECRET'),
+    'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME', default=''),
+    'API_KEY': config('CLOUDINARY_API_KEY', default=''),
+    'API_SECRET': config('CLOUDINARY_API_SECRET', default=''),
 }
 
-# Depuis Django 5.1, DEFAULT_FILE_STORAGE et STATICFILES_STORAGE sont
-# remplacés par ce dictionnaire unique STORAGES.
 STORAGES = {
     'default': {
         'BACKEND': 'cloudinary_storage.storage.MediaCloudinaryStorage',
