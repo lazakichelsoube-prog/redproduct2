@@ -115,6 +115,10 @@ STORAGES = {
     },
 }
 
+# Compatibilité avec django-cloudinary-storage qui utilise encore
+# l'ancien nom de réglage STATICFILES_STORAGE
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 CORS_ALLOW_ALL_ORIGINS = True
 AUTH_USER_MODEL = 'accounts.User'
 
