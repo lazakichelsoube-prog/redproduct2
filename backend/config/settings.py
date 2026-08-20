@@ -6,24 +6,30 @@ import os
 from pathlib import Path
 from datetime import timedelta
 import dj_database_url
+
 try:
     from decouple import config
 except ImportError:
     config = os.getenv
+
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 SECRET_KEY = config(
     'SECRET_KEY',
     default='django-insecure-0m35r#q@6@((37w6x+z(spye)ts%he1=#_&!qhw$p2w$mb5$g9'
 )
+
 DEBUG = config('DEBUG', default=True, cast=bool)
+
 ALLOWED_HOSTS = ['*']
+
 INSTALLED_APPS = [
+    'cloudinary_storage',  # OBLIGATOIRE : Doit être placé avant django.contrib.staticfiles et admin
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'cloudinary_storage',
     'django.contrib.staticfiles',
     'cloudinary',
     'rest_framework',
@@ -31,6 +37,7 @@ INSTALLED_APPS = [
     'accounts',
     'hotels',
 ]
+
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -42,7 +49,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 ROOT_URLCONF = 'config.urls'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -57,35 +66,47 @@ TEMPLATES = [
         },
     },
 ]
+
 WSGI_APPLICATION = 'config.wsgi.application'
+
 DATABASES = {
     'default': dj_database_url.config(
         default='postgresql://postgres:postgres123@localhost:5432/redproductdatabase',
         conn_max_age=600
     )
 }
+
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(hours=24),
 }
+
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
     {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
+
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
+
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME', default=''),
     'API_KEY': config('CLOUDINARY_API_KEY', default=''),
     'API_SECRET': config('CLOUDINARY_API_SECRET', default=''),
 }
+
+# Compatibilité double pour imposer le stockage Cloudinary
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 STORAGES = {
     'default': {
         'BACKEND': 'cloudinary_storage.storage.MediaCloudinaryStorage',
@@ -94,13 +115,12 @@ STORAGES = {
         'BACKEND': 'whitenoise.storage.CompressedStaticFilesStorage',
     },
 }
-# Compatibilité avec django-cloudinary-storage qui utilise encore
-# l'ancien nom de réglage STATICFILES_STORAGE
-# (CompressedStaticFilesStorage sans "Manifest" : évite les erreurs
-# strictes sur des fichiers statiques Django admin manquants)
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+
 CORS_ALLOW_ALL_ORIGINS = True
 AUTH_USER_MODEL = 'accounts.User'
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
