@@ -1,7 +1,9 @@
 import axios from 'axios'
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://redproduct-backend-sv0p.onrender.com/api'
+
 const api = axios.create({
-  baseURL: 'http://127.0.0.1:8000/api',
+  baseURL: API_BASE_URL,
 })
 
 // Ajoute automatiquement le token à chaque requête si connecté
