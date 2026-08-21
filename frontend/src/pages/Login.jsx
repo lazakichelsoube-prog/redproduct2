@@ -25,7 +25,7 @@ function Login() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-slate-800 px-4">
+    <div className="auth-background min-h-screen flex flex-col items-center justify-center px-4">
       <div className="flex items-center gap-2 mb-8">
         <span className="text-red-500 text-2xl">🚩</span>
         <h1 className="text-white text-xl font-bold tracking-wide">RED PRODUCT</h1>
