@@ -15,7 +15,7 @@ function Dashboard() {
   return (
     <div className="flex min-h-screen bg-gray-50">
       {/* Sidebar */}
-      <aside className="w-64 bg-slate-800 text-white flex flex-col">
+      <aside className="pattern-overlay w-64 bg-slate-800 text-white flex flex-col">
         <div className="p-6 flex items-center gap-2">
           <span className="text-red-500 text-xl">🚩</span>
           <span className="font-bold">RED PRODUCT</span>
