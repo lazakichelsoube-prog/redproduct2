@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, Bell, LogOut, LayoutGrid, Building2, Plus } from 'lucide-react';
+import { Search, Bell, LogOut, LayoutGrid, Building2, Plus, Menu, X } from 'lucide-react';
 import api from '../api';
 
 const API_BASE_URL = 'http://127.0.0.1:8000';
@@ -8,6 +8,7 @@ const API_BASE_URL = 'http://127.0.0.1:8000';
 function HotelList() {
   const [hotels, setHotels] = useState([]);
   const [error, setError] = useState('');
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const fetchHotels = async () => {
@@ -37,12 +38,29 @@ function HotelList() {
 
   return (
     <div className="flex min-h-screen bg-gray-50">
+      {/* Overlay mobile */}
+      {menuOpen && (
+        <div
+          className="fixed inset-0 bg-black/40 z-30 lg:hidden"
+          onClick={() => setMenuOpen(false)}
+        />
+      )}
+
       {/* Sidebar */}
-      <aside className="w-64 bg-slate-800 text-white flex flex-col justify-between">
+      <aside
+        className={`fixed lg:static inset-y-0 left-0 z-40 w-64 bg-slate-800 text-white flex flex-col justify-between transform transition-transform duration-200 ${
+          menuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+        }`}
+      >
         <div>
-          <div className="p-6 flex items-center gap-2">
-            <span className="text-red-500 text-xl">🚩</span>
-            <span className="font-bold tracking-wide">RED PRODUCT</span>
+          <div className="p-6 flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2">
+              <span className="text-red-500 text-xl">🚩</span>
+              <span className="font-bold tracking-wide">RED PRODUCT</span>
+            </div>
+            <button className="lg:hidden" onClick={() => setMenuOpen(false)}>
+              <X size={20} />
+            </button>
           </div>
           <p className="px-6 text-xs text-gray-400 mt-2 mb-1">Principal</p>
           <nav>
@@ -69,10 +87,15 @@ function HotelList() {
       {/* Main content */}
       <main className="flex-1">
         {/* Header */}
-        <div className="flex justify-between items-center bg-white px-8 py-4 border-b">
-          <h1 className="text-lg font-semibold text-slate-800">Liste des hôtels</h1>
-          <div className="flex items-center gap-4">
-            <div className="relative">
+        <div className="flex justify-between items-center bg-white px-4 sm:px-8 py-4 border-b gap-2">
+          <div className="flex items-center gap-3">
+            <button className="lg:hidden" onClick={() => setMenuOpen(true)}>
+              <Menu size={22} className="text-slate-700" />
+            </button>
+            <h1 className="text-base sm:text-lg font-semibold text-slate-800">Liste des hôtels</h1>
+          </div>
+          <div className="flex items-center gap-2 sm:gap-4">
+            <div className="relative hidden sm:block">
               <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
               <input
                 type="text"
@@ -89,8 +112,8 @@ function HotelList() {
           </div>
         </div>
 
-        <div className="p-8">
-          <div className="flex justify-between items-center mb-1">
+        <div className="p-4 sm:p-8">
+          <div className="flex justify-between items-center mb-1 flex-wrap gap-3">
             <p className="text-gray-500">
               Hôtels <span className="text-gray-400">{hotels.length}</span>
             </p>
@@ -101,10 +124,10 @@ function HotelList() {
 
           {error && <p className="text-red-500 mt-4">{error}</p>}
 
-          <div className="grid grid-cols-4 gap-6 mt-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-6">
             {hotels.map((hotel) => (
               <div key={hotel.id} className="bg-white rounded-lg shadow overflow-hidden">
-                <div className="w-full h-32 bg-gray-200 flex items-center justify-center">
+                <div className="w-full h-48 sm:h-32 bg-gray-200 flex items-center justify-center">
                   {hotel.photo ? (
                     <img
                       src={getImageUrl(hotel.photo)}
