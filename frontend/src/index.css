@@ -1,4 +1,8 @@
-/* Motif de fond en cercles concentriques — à ajouter à la fin de index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Motif de fond en cercles concentriques */
 
 /* Version complète (couleur + motif) pour les pages Login/Register/etc. */
 .auth-background {
