@@ -18,7 +18,7 @@ function Dashboard() {
   ];
 
   return (
-    <div className="flex h-screen overflow-hidden bg-gray-100">
+    <div className="flex h-screen overflow-hidden bg-[#f0f0f0]">
       <Sidebar
         isOpen={menuOpen}
         onClose={() => setMenuOpen(false)}
@@ -43,7 +43,7 @@ function Dashboard() {
       {/* Main content */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Top bar */}
-        <header className="shrink-0 flex items-center justify-between bg-white px-4 sm:px-8 py-4 shadow-sm">
+        <header className="shrink-0 flex items-center justify-between bg-white border-b border-gray-100 px-4 sm:px-8 py-4">
           <div className="flex items-center gap-3">
             <button className="lg:hidden" onClick={() => setMenuOpen(true)}>
               <Menu size={22} className="text-slate-700" />
@@ -73,11 +73,14 @@ function Dashboard() {
           </div>
         </header>
 
-        {/* Content */}
-        <main className="flex-1 overflow-y-auto p-4 sm:p-8">
-          <p className="text-gray-400 text-sm mb-1">Lorem ipsum dolor sit amet consectetur</p>
-          <h2 className="text-2xl font-bold text-slate-800 mb-8">Bienvenue sur RED Product</h2>
+        {/* Bloc de bienvenue : fond blanc + ligne de séparation */}
+        <div className="shrink-0 bg-white border-b border-gray-200 px-4 sm:px-8 py-4">
+          <h2 className="text-2xl font-light text-slate-800">Bienvenue sur RED Product</h2>
+          <p className="text-gray-500 text-sm">Lorem ipsum dolor sit amet consectetur</p>
+        </div>
 
+        {/* Seule cette zone défile */}
+        <main className="flex-1 overflow-y-auto p-4 sm:p-8 [scrollbar-width:thin] [scrollbar-color:#d1d5db_transparent]">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {stats.map((stat) => (
               <div key={stat.label} className="bg-white rounded-lg shadow p-5 flex items-center gap-4">

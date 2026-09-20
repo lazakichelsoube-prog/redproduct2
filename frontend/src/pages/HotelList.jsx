@@ -76,7 +76,7 @@ function HotelList() {
   const renderAvatarUpload = (size = 'w-9 h-9') => (
     <label className={`${size} rounded-full bg-gray-200 overflow-hidden flex-shrink-0 relative cursor-pointer group block`}>
       <img
-        src={me?.avatar || '/default-avatar.png'}
+        src={me?.avatar || '/avatar.png'}
         alt="avatar"
         className="w-full h-full object-cover"
       />
@@ -94,7 +94,7 @@ function HotelList() {
   );
 
   return (
-    <div className="flex h-screen overflow-hidden bg-gray-50">
+    <div className="flex h-screen overflow-hidden bg-[#f0f0f0]">
       <Sidebar
         isOpen={menuOpen}
         onClose={() => setMenuOpen(false)}
@@ -115,7 +115,7 @@ function HotelList() {
       {/* Main content */}
       <main className="flex-1 flex flex-col min-w-0">
         {/* Header */}
-        <div className="shrink-0 flex justify-between items-center bg-white px-4 sm:px-8 py-4 border-b gap-2">
+        <div className="shrink-0 flex justify-between items-center bg-white px-4 sm:px-8 py-4 border-b border-gray-100 gap-2">
           <div className="flex items-center gap-3">
             <button className="lg:hidden" onClick={() => setMenuOpen(true)}>
               <Menu size={22} className="text-slate-700" />
@@ -140,19 +140,21 @@ function HotelList() {
           </div>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-4 sm:p-8">
-          <div className="flex justify-between items-center mb-1 flex-wrap gap-3">
-            <p className="text-gray-500">
-              Hôtels <span className="text-gray-400">{hotels.length}</span>
-            </p>
-            <Link to="/hotels/create" className="flex items-center gap-2 bg-white border border-gray-300 text-slate-800 px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-50">
-              <Plus size={16} /> Créer un nouveau hôtel
-            </Link>
-          </div>
+        {/* Bandeau : compteur + bouton, avec ligne de séparation */}
+        <div className="shrink-0 bg-white border-b border-gray-200 px-4 sm:px-8 py-4 flex justify-between items-center flex-wrap gap-3">
+          <p className="text-gray-500">
+            Hôtels <span className="text-gray-400">{hotels.length}</span>
+          </p>
+          <Link to="/hotels/create" className="flex items-center gap-2 bg-white border border-gray-300 text-slate-800 px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-50">
+            <Plus size={16} /> Créer un nouveau hôtel
+          </Link>
+        </div>
 
-          {error && <p className="text-red-500 mt-4">{error}</p>}
+        {/* Seule cette zone défile */}
+        <div className="flex-1 overflow-y-auto p-4 sm:p-8 [scrollbar-width:thin] [scrollbar-color:#d1d5db_transparent]">
+          {error && <p className="text-red-500 mb-4">{error}</p>}
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {hotels.map((hotel) => (
               <div key={hotel.id} className="bg-white rounded-lg shadow overflow-hidden">
                 <div className="w-full h-48 sm:h-32 bg-gray-200 flex items-center justify-center">
