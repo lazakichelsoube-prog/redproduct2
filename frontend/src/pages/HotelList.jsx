@@ -94,7 +94,7 @@ function HotelList() {
   );
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
+    <div className="flex h-screen overflow-hidden bg-gray-50">
       <Sidebar
         isOpen={menuOpen}
         onClose={() => setMenuOpen(false)}
@@ -113,9 +113,9 @@ function HotelList() {
       />
 
       {/* Main content */}
-      <main className="flex-1 w-full min-w-0">
+      <main className="flex-1 flex flex-col min-w-0">
         {/* Header */}
-        <div className="flex justify-between items-center bg-white px-4 sm:px-8 py-4 border-b gap-2">
+        <div className="shrink-0 flex justify-between items-center bg-white px-4 sm:px-8 py-4 border-b gap-2">
           <div className="flex items-center gap-3">
             <button className="lg:hidden" onClick={() => setMenuOpen(true)}>
               <Menu size={22} className="text-slate-700" />
@@ -140,7 +140,7 @@ function HotelList() {
           </div>
         </div>
 
-        <div className="p-4 sm:p-8">
+        <div className="flex-1 overflow-y-auto p-4 sm:p-8">
           <div className="flex justify-between items-center mb-1 flex-wrap gap-3">
             <p className="text-gray-500">
               Hôtels <span className="text-gray-400">{hotels.length}</span>

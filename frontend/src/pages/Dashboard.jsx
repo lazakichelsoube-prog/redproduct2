@@ -18,7 +18,7 @@ function Dashboard() {
   ];
 
   return (
-    <div className="flex min-h-screen bg-gray-100">
+    <div className="flex h-screen overflow-hidden bg-gray-100">
       <Sidebar
         isOpen={menuOpen}
         onClose={() => setMenuOpen(false)}
@@ -41,9 +41,9 @@ function Dashboard() {
       />
 
       {/* Main content */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col min-w-0">
         {/* Top bar */}
-        <header className="flex items-center justify-between bg-white px-4 sm:px-8 py-4 shadow-sm">
+        <header className="shrink-0 flex items-center justify-between bg-white px-4 sm:px-8 py-4 shadow-sm">
           <div className="flex items-center gap-3">
             <button className="lg:hidden" onClick={() => setMenuOpen(true)}>
               <Menu size={22} className="text-slate-700" />
@@ -74,7 +74,7 @@ function Dashboard() {
         </header>
 
         {/* Content */}
-        <main className="flex-1 p-4 sm:p-8">
+        <main className="flex-1 overflow-y-auto p-4 sm:p-8">
           <p className="text-gray-400 text-sm mb-1">Lorem ipsum dolor sit amet consectetur</p>
           <h2 className="text-2xl font-bold text-slate-800 mb-8">Bienvenue sur RED Product</h2>
 
