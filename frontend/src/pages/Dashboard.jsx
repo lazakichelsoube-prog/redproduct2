@@ -82,11 +82,11 @@ function Dashboard() {
         <div className="relative z-10 flex items-center gap-3 p-4 border-t border-slate-600">
           <img
             src="/avatar.jpg"
-            alt="Mouhamet Badiane"
+            alt="LAZAKI CHELSOUBE"
             className="w-10 h-10 rounded-full object-cover"
           />
           <div>
-            <p className="text-sm font-medium text-white">Mouhamet Badiane</p>
+            <p className="text-sm font-medium text-white">LAZAKI CHELSOUBE</p>
             <p className="text-xs text-gray-300 flex items-center gap-1">
               <span className="w-2 h-2 rounded-full bg-green-500 inline-block"></span>
               en ligne
@@ -121,7 +121,7 @@ function Dashboard() {
             </div>
             <img
               src="/avatar.jpg"
-              alt="Mouhamet Badiane"
+              alt="LAZAKI CHELSOUBE"
               className="w-9 h-9 rounded-full object-cover"
             />
             <LogOut size={20} className="text-gray-500 cursor-pointer" />
