@@ -29,38 +29,49 @@ function Dashboard() {
 
       {/* Sidebar */}
       <aside
-        className={`fixed lg:static inset-y-0 left-0 z-40 w-64 bg-gray-200 text-slate-700 flex flex-col justify-between transform transition-transform duration-200 ${
+        className={`fixed lg:static inset-y-0 left-0 z-40 w-64 bg-slate-700 text-white flex flex-col justify-between transform transition-transform duration-200 relative overflow-hidden ${
           menuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
         }`}
       >
-        <div>
+        {/* Motif de fond en cercles ondulés */}
+        <svg
+          className="absolute inset-0 w-full h-full opacity-[0.07] pointer-events-none"
+          viewBox="0 0 256 900"
+          preserveAspectRatio="xMidYMid slice"
+          fill="none"
+        >
+          <circle cx="40" cy="120" r="90" stroke="white" strokeWidth="2" />
+          <circle cx="40" cy="120" r="130" stroke="white" strokeWidth="2" />
+          <circle cx="220" cy="60" r="70" stroke="white" strokeWidth="2" />
+          <circle cx="30" cy="600" r="110" stroke="white" strokeWidth="2" />
+          <circle cx="30" cy="600" r="160" stroke="white" strokeWidth="2" />
+          <circle cx="200" cy="750" r="90" stroke="white" strokeWidth="2" />
+          <circle cx="200" cy="750" r="140" stroke="white" strokeWidth="2" />
+          <circle cx="60" cy="880" r="80" stroke="white" strokeWidth="2" />
+        </svg>
+
+        <div className="relative z-10">
           <div className="p-6 flex items-center justify-between gap-2">
             <div className="flex items-center gap-2">
               <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M2 1V21" stroke="#1E293B" strokeWidth="1.5" strokeLinecap="round"/>
-                <path d="M2 2L17 7.5L10.5 10L17 12.5L2 18V2Z" fill="url(#redFlagGradient)"/>
-                <defs>
-                  <linearGradient id="redFlagGradient" x1="2" y1="2" x2="17" y2="18" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#FB7185"/>
-                    <stop offset="1" stopColor="#E11D48"/>
-                  </linearGradient>
-                </defs>
+                <path d="M2 1V21" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+                <path d="M2 2L17 7.5L10.5 10L17 12.5L2 18V2Z" fill="white"/>
               </svg>
-              <span className="font-bold text-slate-800">RED PRODUCT</span>
+              <span className="font-bold text-white tracking-wide">RED PRODUCT</span>
             </div>
             <button className="lg:hidden" onClick={() => setMenuOpen(false)}>
               <X size={20} />
             </button>
           </div>
 
-          <p className="px-6 text-xs text-gray-500 mb-2">Principal</p>
+          <p className="px-6 text-xs text-gray-300 mb-2">Principal</p>
 
           <nav>
             <Link to="/dashboard" className="flex items-center gap-3 px-6 py-3 bg-white font-medium text-slate-800">
               <LayoutGrid size={18} />
               Dashboard
             </Link>
-            <Link to="/hotels" className="flex items-center gap-3 px-6 py-3 hover:bg-gray-300 cursor-pointer text-slate-700">
+            <Link to="/hotels" className="flex items-center gap-3 px-6 py-3 hover:bg-slate-600 cursor-pointer text-white">
               <Building2 size={18} />
               Liste des hôtels
             </Link>
@@ -68,13 +79,15 @@ function Dashboard() {
         </div>
 
         {/* Bloc utilisateur en bas */}
-        <div className="flex items-center gap-3 p-4 border-t border-gray-300">
-          <div className="w-9 h-9 rounded-full bg-slate-400 flex items-center justify-center text-white text-sm font-bold">
-            MB
-          </div>
+        <div className="relative z-10 flex items-center gap-3 p-4 border-t border-slate-600">
+          <img
+            src="/avatar.jpg"
+            alt="Mouhamet Badiane"
+            className="w-10 h-10 rounded-full object-cover"
+          />
           <div>
-            <p className="text-sm font-medium text-slate-800">Mouhamet Badiane</p>
-            <p className="text-xs text-green-600 flex items-center gap-1">
+            <p className="text-sm font-medium text-white">Mouhamet Badiane</p>
+            <p className="text-xs text-gray-300 flex items-center gap-1">
               <span className="w-2 h-2 rounded-full bg-green-500 inline-block"></span>
               en ligne
             </p>
@@ -106,9 +119,11 @@ function Dashboard() {
               <Bell size={20} className="text-gray-500" />
               <span className="absolute -top-2 -right-2 bg-yellow-400 text-[10px] text-white rounded-full w-4 h-4 flex items-center justify-center">3</span>
             </div>
-            <div className="w-9 h-9 rounded-full bg-slate-300 flex items-center justify-center text-slate-700 text-sm font-bold">
-              MB
-            </div>
+            <img
+              src="/avatar.jpg"
+              alt="Mouhamet Badiane"
+              className="w-9 h-9 rounded-full object-cover"
+            />
             <LogOut size={20} className="text-gray-500 cursor-pointer" />
           </div>
         </header>
