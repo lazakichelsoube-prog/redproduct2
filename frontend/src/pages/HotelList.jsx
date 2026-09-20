@@ -115,7 +115,7 @@ function HotelList() {
       {/* Main content */}
       <main className="flex-1 flex flex-col min-w-0">
         {/* Header */}
-        <div className="shrink-0 flex justify-between items-center bg-white px-4 sm:px-8 py-4 border-b border-gray-100 gap-2">
+        <div className="shrink-0 h-16 flex justify-between items-center bg-white px-4 sm:px-8 border-b border-gray-100 gap-2">
           <div className="flex items-center gap-3">
             <button className="lg:hidden" onClick={() => setMenuOpen(true)}>
               <Menu size={22} className="text-slate-700" />
@@ -141,7 +141,7 @@ function HotelList() {
         </div>
 
         {/* Bandeau : compteur + bouton, avec ligne de séparation */}
-        <div className="shrink-0 bg-white border-b border-gray-200 px-4 sm:px-8 py-4 flex justify-between items-center flex-wrap gap-3">
+        <div className="shrink-0 h-[88px] bg-white border-b border-gray-200 px-4 sm:px-8 flex justify-between items-center gap-3">
           <p className="text-gray-500">
             Hôtels <span className="text-gray-400">{hotels.length}</span>
           </p>

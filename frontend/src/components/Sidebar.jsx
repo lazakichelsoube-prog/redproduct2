@@ -39,7 +39,7 @@ export default function Sidebar({ isOpen = false, onClose = () => {}, footer = n
       >
         <div>
           {/* Logo + titre */}
-          <div className="flex items-center justify-between px-4 py-6">
+          <div className="h-16 flex items-center justify-between px-4">
             <div className="flex items-center gap-3">
               <Logo />
               <span className="text-xl font-bold text-gray-100">RED PRODUCT</span>
@@ -49,7 +49,7 @@ export default function Sidebar({ isOpen = false, onClose = () => {}, footer = n
             </button>
           </div>
 
-          <p className="px-4 pt-3 pb-3 text-[15px] text-white">Principal</p>
+          <p className="h-10 px-4 flex items-center text-[15px] text-white">Principal</p>
 
           <nav>
             {links.map(({ to, label, Icon }) => (

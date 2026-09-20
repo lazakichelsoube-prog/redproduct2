@@ -43,7 +43,7 @@ function Dashboard() {
       {/* Main content */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Top bar */}
-        <header className="shrink-0 flex items-center justify-between bg-white border-b border-gray-100 px-4 sm:px-8 py-4">
+        <header className="shrink-0 h-16 flex items-center justify-between bg-white border-b border-gray-100 px-4 sm:px-8">
           <div className="flex items-center gap-3">
             <button className="lg:hidden" onClick={() => setMenuOpen(true)}>
               <Menu size={22} className="text-slate-700" />
@@ -74,7 +74,7 @@ function Dashboard() {
         </header>
 
         {/* Bloc de bienvenue : fond blanc + ligne de séparation */}
-        <div className="shrink-0 bg-white border-b border-gray-200 px-4 sm:px-8 py-4">
+        <div className="shrink-0 h-[88px] flex flex-col justify-center bg-white border-b border-gray-200 px-4 sm:px-8">
           <h2 className="text-2xl font-light text-slate-800">Bienvenue sur RED Product</h2>
           <p className="text-gray-500 text-sm">Lorem ipsum dolor sit amet consectetur</p>
         </div>
