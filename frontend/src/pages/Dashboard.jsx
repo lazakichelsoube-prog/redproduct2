@@ -36,7 +36,16 @@ function Dashboard() {
         <div>
           <div className="p-6 flex items-center justify-between gap-2">
             <div className="flex items-center gap-2">
-              <span className="text-slate-800 text-xl">🚩</span>
+              <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 1V21" stroke="#1E293B" strokeWidth="1.5" strokeLinecap="round"/>
+                <path d="M2 2L17 7.5L10.5 10L17 12.5L2 18V2Z" fill="url(#redFlagGradient)"/>
+                <defs>
+                  <linearGradient id="redFlagGradient" x1="2" y1="2" x2="17" y2="18" gradientUnits="userSpaceOnUse">
+                    <stop stopColor="#FB7185"/>
+                    <stop offset="1" stopColor="#E11D48"/>
+                  </linearGradient>
+                </defs>
+              </svg>
               <span className="font-bold text-slate-800">RED PRODUCT</span>
             </div>
             <button className="lg:hidden" onClick={() => setMenuOpen(false)}>
