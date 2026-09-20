@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import {
-  Menu, X, Search, Bell, LogOut, LayoutGrid, Building2,
+  Menu, Search, Bell, LogOut, Building2,
   Mail, MessageSquare, Users, Inbox,
 } from 'lucide-react';
+import Sidebar from '../components/Sidebar';
 
 function Dashboard() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -19,64 +19,26 @@ function Dashboard() {
 
   return (
     <div className="flex min-h-screen bg-gray-100">
-      {/* Overlay mobile */}
-      {menuOpen && (
-        <div
-          className="fixed inset-0 bg-black/40 z-30 lg:hidden"
-          onClick={() => setMenuOpen(false)}
-        />
-      )}
-
-      {/* Sidebar */}
-      <aside
-        className={`pattern-overlay fixed lg:static inset-y-0 left-0 z-40 w-64 bg-slate-700 text-white flex flex-col justify-between transform transition-transform duration-200 ${
-          menuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
-        }`}
-      >
-        <div>
-          <div className="p-6 flex items-center justify-between gap-2">
-            <div className="flex items-center gap-2">
-              <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M2 1V21" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-                <path d="M2 2L17 7.5L10.5 10L17 12.5L2 18V2Z" fill="white"/>
-              </svg>
-              <span className="font-bold text-white tracking-wide">RED PRODUCT</span>
+      <Sidebar
+        isOpen={menuOpen}
+        onClose={() => setMenuOpen(false)}
+        footer={
+          <>
+            <img
+              src="/avatar.png"
+              alt="Mouhamet Badiane"
+              className="w-10 h-10 rounded-full object-cover"
+            />
+            <div>
+              <p className="text-sm font-medium text-white">Mouhamet Badiane</p>
+              <p className="text-xs text-gray-300 flex items-center gap-1">
+                <span className="w-2 h-2 rounded-full bg-green-500 inline-block"></span>
+                en ligne
+              </p>
             </div>
-            <button className="lg:hidden" onClick={() => setMenuOpen(false)}>
-              <X size={20} />
-            </button>
-          </div>
-
-          <p className="px-6 text-xs text-gray-300 mb-2">Principal</p>
-
-          <nav>
-            <Link to="/dashboard" className="flex items-center gap-3 px-6 py-3 bg-white font-medium text-slate-800">
-              <LayoutGrid size={18} />
-              Dashboard
-            </Link>
-            <Link to="/hotels" className="flex items-center gap-3 px-6 py-3 hover:bg-slate-600 cursor-pointer text-white">
-              <Building2 size={18} />
-              Liste des hôtels
-            </Link>
-          </nav>
-        </div>
-
-        {/* Bloc utilisateur en bas */}
-        <div className="relative z-10 flex items-center gap-3 p-4 border-t border-slate-600">
-          <img
-            src="/avatar.jpg"
-            alt="Mouhamet Badiane"
-            className="w-10 h-10 rounded-full object-cover"
-          />
-          <div>
-            <p className="text-sm font-medium text-white">Mouhamet Badiane</p>
-            <p className="text-xs text-gray-300 flex items-center gap-1">
-              <span className="w-2 h-2 rounded-full bg-green-500 inline-block"></span>
-              en ligne
-            </p>
-          </div>
-        </div>
-      </aside>
+          </>
+        }
+      />
 
       {/* Main content */}
       <div className="flex-1 flex flex-col">
@@ -103,7 +65,7 @@ function Dashboard() {
               <span className="absolute -top-2 -right-2 bg-yellow-400 text-[10px] text-white rounded-full w-4 h-4 flex items-center justify-center">3</span>
             </div>
             <img
-              src="/avatar.jpg"
+              src="/avatar.png"
               alt="Mouhamet Badiane"
               className="w-9 h-9 rounded-full object-cover"
             />
