@@ -1,6 +1,15 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import api from '../api'
+import AuthLayout, {
+  AuthCard,
+  AuthInput,
+  AuthCheckbox,
+  AuthButton,
+  AuthError,
+  AuthFooter,
+  AuthLink,
+} from '../components/AuthLayout'
 
 function Register() {
   const [username, setUsername] = useState('')
@@ -37,67 +46,51 @@ function Register() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-800 flex flex-col items-center justify-center gap-8">
-      <div className="flex items-center gap-2 text-white text-xl font-bold">
-        🚩 RED PRODUCT
-      </div>
+    <AuthLayout>
+      <AuthCard title="Inscrivez-vous en tant que Admin">
+        <form onSubmit={handleSubmit}>
+          <div className="flex flex-col gap-[56px]">
+            <AuthInput
+              type="text"
+              placeholder="Nom"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <AuthInput
+              type="email"
+              placeholder="E-mail"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <AuthInput
+              type="password"
+              placeholder="Mot de passe"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
 
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white rounded-lg p-8 w-80 flex flex-col gap-4"
-      >
-        <p className="text-gray-700 font-medium">Inscrivez-vous en tant que Admin</p>
-
-        <input
-          type="text"
-          placeholder="Nom"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          className="border-b border-gray-300 py-2 outline-none focus:border-gray-600"
-        />
-
-        <input
-          type="email"
-          placeholder="E-mail"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="border-b border-gray-300 py-2 outline-none focus:border-gray-600"
-        />
-
-        <input
-          type="password"
-          placeholder="Mot de passe"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="border-b border-gray-300 py-2 outline-none focus:border-gray-600"
-        />
-
-        <label className="flex items-center gap-2 text-sm text-gray-600">
-          <input
-            type="checkbox"
+          <AuthCheckbox
+            label="Accepter les termes et la politique"
+            className="mt-[33.33px]"
             checked={accepted}
             onChange={(e) => setAccepted(e.target.checked)}
           />
-          Accepter les termes et la politique
-        </label>
 
-        {error && <p className="text-red-500 text-sm">{error}</p>}
+          <AuthButton type="submit" className="mt-[34.67px]">
+            S'inscrire
+          </AuthButton>
 
-        <button
-          type="submit"
-          className="bg-gray-900 text-white py-2 rounded mt-2 hover:bg-gray-800"
-        >
-          S'inscrire
-        </button>
-      </form>
+          <AuthError>{error}</AuthError>
+        </form>
+      </AuthCard>
 
-      <p className="text-white text-sm">
-        Vous avez déjà un compte ?{' '}
-        <Link to="/" className="text-yellow-400 cursor-pointer">
-          Se connecter
-        </Link>
-      </p>
-    </div>
+      <AuthFooter>
+        <p className="text-white/[.87]">
+          Vous avez déjà un compte? <AuthLink to="/" bold>Se connecter</AuthLink>
+        </p>
+      </AuthFooter>
+    </AuthLayout>
   )
 }
 

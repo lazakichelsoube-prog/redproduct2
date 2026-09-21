@@ -4,15 +4,8 @@
 import { NavLink } from 'react-router-dom';
 import { X } from 'lucide-react';
 import { MdDashboard, MdApartment } from 'react-icons/md';
+import RedLogo from './RedLogo';
 
-// Logo approximatif : remplace-le par le SVG exporté depuis Figma pour un rendu identique.
-const Logo = () => (
-  <svg width="36" height="36" viewBox="0 0 40 40" aria-hidden="true">
-    <polygon points="4,4 16,4 16,36 4,36" fill="#ffffff" />
-    <polygon points="18,4 36,36 24,36 18,24" fill="#ffffff" />
-    <polygon points="16,4 28,4 16,22" fill="#9ca3a8" />
-  </svg>
-);
 
 const links = [
   { to: '/dashboard', label: 'Dashboard', Icon: MdDashboard },
@@ -41,7 +34,7 @@ export default function Sidebar({ isOpen = false, onClose = () => {}, footer = n
           {/* Logo + titre */}
           <div className="h-16 flex items-center justify-between px-4">
             <div className="flex items-center gap-3">
-              <Logo />
+              <RedLogo size={26} />
               <span className="text-xl font-bold text-gray-100">RED PRODUCT</span>
             </div>
             <button className="lg:hidden" onClick={onClose} aria-label="Fermer le menu">
