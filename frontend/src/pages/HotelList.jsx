@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Bell, LogOut, Plus, Menu, Camera } from 'lucide-react';
 import api from '../api';
@@ -20,7 +20,7 @@ function HotelList() {
         });
         setHotels(response.data);
       } catch (err) {
-        setError('Impossible de charger les hôtels');
+        setError('Impossible de charger les hotels');
       }
     };
 
@@ -32,7 +32,7 @@ function HotelList() {
         });
         setMe(response.data);
       } catch (err) {
-        // silencieux : si /me/ échoue, on garde l'avatar par défaut
+        // silencieux
       }
     };
 
@@ -72,7 +72,6 @@ function HotelList() {
     }
   };
 
-  // Fonction (et non composant) : évite de recréer l'<input> à chaque rendu.
   const renderAvatarUpload = (size = 'w-9 h-9') => (
     <label className={`${size} rounded-full bg-gray-200 overflow-hidden flex-shrink-0 relative cursor-pointer group block`}>
       <img
@@ -102,7 +101,7 @@ function HotelList() {
           <>
             {renderAvatarUpload('w-10 h-10')}
             <div>
-              <p className="text-sm font-medium text-white">{me?.username || 'Utilisateur'}</p>
+              <p className="text-sm font-medium text-white">Mouhamet Badiane</p>
               <p className="text-xs text-gray-300 flex items-center gap-1">
                 <span className="w-2 h-2 rounded-full bg-green-500 inline-block"></span>
                 en ligne
@@ -112,15 +111,13 @@ function HotelList() {
         }
       />
 
-      {/* Main content */}
       <main className="flex-1 flex flex-col min-w-0">
-        {/* Header */}
         <div className="shrink-0 h-16 flex justify-between items-center bg-white px-4 sm:px-8 border-b border-gray-100 gap-2">
           <div className="flex items-center gap-3">
             <button className="lg:hidden" onClick={() => setMenuOpen(true)}>
               <Menu size={22} className="text-slate-700" />
             </button>
-            <h1 className="text-base sm:text-lg font-semibold text-slate-800">Liste des hôtels</h1>
+            <h1 className="text-base sm:text-lg font-semibold text-slate-800">Liste des hotels</h1>
           </div>
           <div className="flex items-center gap-2 sm:gap-4">
             <div className="relative hidden sm:block">
@@ -140,17 +137,15 @@ function HotelList() {
           </div>
         </div>
 
-        {/* Bandeau : compteur + bouton, avec ligne de séparation */}
         <div className="shrink-0 h-[88px] bg-white border-b border-gray-200 px-4 sm:px-8 flex justify-between items-center gap-3">
           <p className="text-gray-500">
-            Hôtels <span className="text-gray-400">{hotels.length}</span>
+            Hotels <span className="text-gray-400">{hotels.length}</span>
           </p>
           <Link to="/hotels/create" className="flex items-center gap-2 bg-white border border-gray-300 text-slate-800 px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-50">
-            <Plus size={16} /> Créer un nouveau hôtel
+            <Plus size={16} /> Creer un nouveau hotel
           </Link>
         </div>
 
-        {/* Seule cette zone défile */}
         <div className="flex-1 overflow-y-auto p-4 sm:p-8 [scrollbar-width:thin] [scrollbar-color:#d1d5db_transparent]">
           {error && <p className="text-red-500 mb-4">{error}</p>}
 
