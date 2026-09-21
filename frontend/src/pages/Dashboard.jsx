@@ -24,11 +24,7 @@ function Dashboard() {
         onClose={() => setMenuOpen(false)}
         footer={
           <>
-            <img
-              src="/avatar.png"
-              alt="Mouhamet Badiane"
-              className="w-10 h-10 rounded-full object-cover"
-            />
+            <div className="w-10 h-10 rounded-full bg-white border border-gray-200"></div>
             <div>
               <p className="text-sm font-medium text-white">Mouhamet Badiane</p>
               <p className="text-xs text-gray-300 flex items-center gap-1">
@@ -64,11 +60,7 @@ function Dashboard() {
               <Bell size={20} className="text-gray-500" />
               <span className="absolute -top-2 -right-2 bg-yellow-400 text-[10px] text-white rounded-full w-4 h-4 flex items-center justify-center">3</span>
             </div>
-            <img
-              src="/avatar.png"
-              alt="Mouhamet Badiane"
-              className="w-9 h-9 rounded-full object-cover"
-            />
+            <div className="w-9 h-9 rounded-full bg-white border border-gray-200"></div>
             <LogOut size={20} className="text-gray-500 cursor-pointer" />
           </div>
         </header>

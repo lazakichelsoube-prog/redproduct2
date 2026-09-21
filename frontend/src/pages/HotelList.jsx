@@ -72,13 +72,17 @@ function HotelList() {
     }
   };
 
+  // Fonction (et non composant) : évite de recréer l'<input> à chaque rendu.
   const renderAvatarUpload = (size = 'w-9 h-9') => (
-    <label className={`${size} rounded-full bg-gray-200 overflow-hidden flex-shrink-0 relative cursor-pointer group block`}>
-      <img
-        src={me?.avatar || '/avatar.png'}
-        alt="avatar"
-        className="w-full h-full object-cover"
-      />
+    <label className={`${size} rounded-full bg-white border border-gray-200 overflow-hidden flex-shrink-0 relative cursor-pointer group block`}>
+      {me?.avatar && (
+        <img
+          src={me.avatar}
+          alt="avatar"
+          className="w-full h-full object-cover"
+          onError={(e) => { e.target.style.display = 'none'; }}
+        />
+      )}
       <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
         <Camera size={14} className="text-white" />
       </div>
