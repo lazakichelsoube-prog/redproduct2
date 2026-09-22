@@ -17,11 +17,13 @@ function Register() {
   const [password, setPassword] = useState('')
   const [accepted, setAccepted] = useState(false)
   const [error, setError] = useState('')
+  const [success, setSuccess] = useState('')
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError('')
+    setSuccess('')
 
     if (!accepted) {
       setError('Vous devez accepter les termes et la politique')
@@ -34,7 +36,10 @@ function Register() {
         email,
         password,
       })
-      navigate('/')
+      setSuccess('Inscription réussie avec succès')
+      setTimeout(() => {
+        navigate('/')
+      }, 2000)
     } catch (err) {
       const data = err.response?.data
       if (data?.username) {
@@ -55,18 +60,21 @@ function Register() {
               placeholder="Nom"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
+              disabled={!!success}
             />
             <AuthInput
               type="email"
               placeholder="E-mail"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              disabled={!!success}
             />
             <AuthInput
               type="password"
               placeholder="Mot de passe"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              disabled={!!success}
             />
           </div>
 
@@ -75,11 +83,18 @@ function Register() {
             className="mt-[33.33px]"
             checked={accepted}
             onChange={(e) => setAccepted(e.target.checked)}
+            disabled={!!success}
           />
 
-          <AuthButton type="submit" className="mt-[34.67px]">
+          <AuthButton type="submit" className="mt-[34.67px]" disabled={!!success}>
             S'inscrire
           </AuthButton>
+
+          {success && (
+            <p className="mt-4 text-center text-sm font-medium text-green-500">
+              {success}
+            </p>
+          )}
 
           <AuthError>{error}</AuthError>
         </form>
